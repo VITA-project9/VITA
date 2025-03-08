@@ -1,0 +1,40 @@
+/************************************************/
+/***************Main Style Changes***************/
+/************************************************/
+
+main {
+    padding: 20px;
+}
+
+.tabbingLVL1 {
+    margin-left: 40px;
+}
+
+.tabbingLVL2 {
+    margin-left: 60px;
+}
+
+.tabbingLVL3 {
+    margin-left: 80px;
+}
+
+.general_title {
+    text-decoration: underline;
+}
+
+main a {
+    margin-left: 0;
+    color: rgb(0, 179, 255);
+}
+
+main a img{
+    width: 1em;
+    height: 1em;
+    margin-left: 0px;
+}
+
+/*List Margin*/
+ul.custom-list {
+    list-style-type: square;
+    margin-bottom: 5px;
+}

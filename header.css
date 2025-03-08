@@ -1,0 +1,40 @@
+/************************************************/
+/**************Header Style Changes**************/
+/************************************************/
+
+header {
+    background-color: var(--header-background-color-light);
+    color: var(--header-text-color-light);
+    text-align: center;
+    padding: 1em;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    z-index: 1; /* Ensure the header is above the rest of the body */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Added shadow to differentiate from others on night mode */
+    
+    height: 100px;
+}
+
+/*CHANGE TO DESIRED COLOR*/
+header.dark-mode {
+    background-color: var(--header-background-color-dark);
+    color: var(--header-text-color-dark);
+    text-align: center;
+    padding: 1em;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    z-index: 1; /* Ensure the header is above the rest of the body */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Added shadow to differentiate from others on night mode */
+    
+    height: 100px;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+h2 {
+    font-size: 1.25em;
+}
