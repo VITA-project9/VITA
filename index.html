@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blog</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
@@ -18,10 +19,20 @@
         </nav>
     </header>
     <main>
+        <section>
+            <h2>Add a New Post</h2>
+            <form id="post-form">
+                <input type="text" id="title" placeholder="Post Title" required>
+                <textarea id="content" placeholder="Post Content" required></textarea>
+                <button type="submit">Add Post</button>
+            </form>
+        </section>
         <section id="posts">
             <!-- Blog posts will be dynamically inserted here -->
         </section>
     </main>
-    <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2025 My Blog. All rights reserved.</p>
+    </footer>
 </body>
 </html>
