@@ -6,8 +6,6 @@ body {
     background-color: #f4f4f4;
     color: #333;
     height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Header */
@@ -49,7 +47,6 @@ main {
     background: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    flex: 1;
 }
 
 /* Blog Post Styles */
