@@ -5,6 +5,9 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header */
@@ -46,6 +49,7 @@ main {
     background: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
 }
 
 /* Blog Post Styles */
@@ -75,10 +79,11 @@ main {
 }
 
 /* Footer */
+/* Footer stays at the bottom */
 footer {
-    text-align: center;
-    padding: 15px;
     background: #0073e6;
     color: white;
-    margin-top: 30px;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
 }
