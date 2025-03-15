@@ -77,13 +77,3 @@ main {
 .read-more:hover {
     text-decoration: underline;
 }
-
-/* Footer */
-/* Footer stays at the bottom */
-footer {
-    background: #0073e6;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    width: 100%;
-}
