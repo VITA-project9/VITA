@@ -78,7 +78,7 @@ main {
 /* Hero Section */
 .hero {
     background: url('https://disabilityinsider.com/wp-content/uploads/2020/02/blind-man-bus-838x525.jpg') no-repeat center center/cover;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     padding: 100px 20px;
 }
