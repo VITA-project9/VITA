@@ -155,7 +155,7 @@
   /* === CTA Button === */
   .cta-button {
     display: inline-block;
-    background: var(--accent);
+    background: var(--primary);
     color: var(--text);
     font-weight: 700;
     padding: 0.8rem 1.8rem;
@@ -167,7 +167,7 @@
   }
   
   .cta-button:hover, .cta-button:focus {
-    background: var(--primary);
+    background: var(--primary-dark);
     transform: translateY(-3px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
     color: var(--text);
