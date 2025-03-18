@@ -70,30 +70,32 @@
         </section>
     </main>
     
-    // Theme switcher JavaScript
-    const themeToggle = document.getElementById('theme-switch');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    <script>
+        // Theme switcher JavaScript
+        const themeToggle = document.getElementById('theme-switch');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-    // Function to set theme
-    function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    }
+        // Function to set theme
+        function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        }
 
-    // Check for saved theme preference or use the system preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-    setTheme(savedTheme);
-    } else if (prefersDarkScheme.matches) {
-      setTheme('dark');
-    }
+        // Check for saved theme preference or use the system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+        setTheme(savedTheme);
+        } else if (prefersDarkScheme.matches) {
+          setTheme('dark');
+        }
 
-    // Add click event to toggle button
-    themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    });
+        // Add click event to toggle button
+        themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        });
+    </script>
 
 </body>
 </html>
