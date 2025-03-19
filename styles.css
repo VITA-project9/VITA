@@ -553,7 +553,7 @@
   [data-theme="dark"] .cta-button {
     display: inline-block;
     background: var(--primary-dm);
-    color: var(--text);
+    color: var(--text-dm);
     font-weight: 700;
     padding: 0.8rem 1.8rem;
     font-size: 1.1rem;
