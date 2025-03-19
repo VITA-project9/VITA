@@ -432,9 +432,9 @@
   
   /* Dark Theme Variables */
   [data-theme="dark"] {
-    --primary-dm: #3b8eea;
-    --primary-dark-dm: #2a6bb3;
-    --primary-light-dm: #1a2735;
+    --primary: #0073e6;
+    --primary-dark: #005bb5;
+    --navy-dm: #1a2735;
     --accent-dm: #2a6bb3;
     --text-dm: #e1e1e1;
     --text-light-dm: #b0b0b0;
