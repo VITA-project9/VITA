@@ -543,6 +543,9 @@
   [data-theme="dark"] .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), 
                       url('https://disabilityinsider.com/wp-content/uploads/2020/02/blind-man-bus-838x525.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   }
 
   [data-theme="dark"] .hero-content {
