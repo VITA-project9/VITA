@@ -3,7 +3,7 @@
     --primary: #0073e6;
     --primary-dark: #005bb5;
     --primary-light: #e6f3ff;
-    --accent: #ffaa00;
+    --accent: #2a6bb3;
     --text: #333333;
     --text-light: #666666;
     --light: #f4f4f4;
@@ -157,7 +157,7 @@
   .cta-button {
     display: inline-block;
     background: var(--primary);
-    color: var(--text);
+    color: var(--white);
     font-weight: 700;
     padding: 0.8rem 1.8rem;
     font-size: 1.1rem;
@@ -429,23 +429,6 @@
   
   .feature:nth-child(2) { animation-delay: 0.2s; }
   .feature:nth-child(3) { animation-delay: 0.4s; }
-
-  /* LIGHT AND DARK MODE */
-  /* Light Theme (Default) Variables */
-:root {
-    --primary: #0073e6;
-    --primary-dark: #005bb5;
-    --primary-light: #e6f3ff;
-    --accent: #2a6bb3;
-    --text: #333333;
-    --text-light: #666666;
-    --light: #f4f4f4;
-    --white: #ffffff;
-    --shadow: rgba(0, 0, 0, 0.1);
-    --border-radius: 8px;
-    --transition: all 0.3s ease;
-    --background: #ffffff;
-  }
   
   /* Dark Theme Variables */
   [data-theme="dark"] {
