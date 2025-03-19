@@ -522,7 +522,7 @@
   }
   
   [data-theme="dark"] .cta {
-    background: var(--primary-light);
+    background: var(--white);
   }
   
   [data-theme="dark"] .feature,
