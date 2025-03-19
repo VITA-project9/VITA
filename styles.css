@@ -1,58 +1,545 @@
-/* === Theme Variables === */
+/* === Base Styles === */
 :root {
-  /* Light Mode (Default) */
-  --primary: #0073e6;
-  --primary-dark: #005bb5;
-  --primary-light: #e6f3ff;
-  --accent: #005bb5;
-  --text: #333333;
-  --text-light: #666666;
-  --background: #f4f4f4;
-  --surface: #ffffff;
-  --shadow: rgba(0, 0, 0, 0.1);
-  --border: #e1e1e1;
-  --hero-overlay: rgba(0, 0, 0, 0.5);
-  --button-shadow: rgba(0, 0, 0, 0.2);
-  --button-hover-shadow: rgba(0, 0, 0, 0.3);
-  --text-shadow: rgba(0, 0, 0, 0.5);
-  --border-radius: 8px;
-  --transition: all 0.3s ease;
-}
-
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: #3b91ff;
-    --primary-dark: #0073e6;
-    --primary-light: #1a2d47;
-    --accent: #005bb5;
-    --text: #e0e0e0;
-    --text-light: #a0a0a0;
-    --background: #121212;
-    --surface: #1e1e1e;
-    --shadow: rgba(0, 0, 0, 0.3);
-    --border: #2a2a2a;
-    --hero-overlay: rgba(0, 0, 0, 0.7);
-    --button-shadow: rgba(0, 0, 0, 0.4);
-    --button-hover-shadow: rgba(0, 0, 0, 0.5);
-    --text-shadow: rgba(0, 0, 0, 0.7);
+    --primary: #0073e6;
+    --primary-dark: #005bb5;
+    --primary-light: #e6f3ff;
+    --accent: #ffaa00;
+    --text: #333333;
+    --text-light: #666666;
+    --light: #f4f4f4;
+    --white: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
   }
-}
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* === Typography === */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--primary);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+  }
+  
+  p {
+    margin-bottom: 1.2rem;
+  }
+  
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  a:hover, a:focus {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+  
+  /* === Header & Navigation === */
+  header {
+    background: var(--primary);
+    color: var(--white);
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: 0 4px 6px var(--shadow);
+  }
+  
+  header h1 {
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  
+  nav {
+    margin-top: 1rem;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  nav ul li a {
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    transition: var(--transition);
+  }
+  
+  nav ul li a:hover, nav ul li a:focus {
+    background: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+  }
+  
+  /* === Main Content === */
+  main {
+    max-width: 1200px;
+    width: 90%;
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 12px var(--shadow);
+    flex: 1;
+  }
+  
+  /* === Hero Section === */
+  .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+                      url('https://disabilityinsider.com/wp-content/uploads/2020/02/blind-man-bus-838x525.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: var(--white);
+    text-align: center;
+    padding: 8rem 2rem;
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+  }
+  
+  .hero-content {
+    max-width: 650px;
+    margin: auto;
+  }
+  
+  .hero h1 {
+    color: var(--text);
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* === CTA Button === */
+  .cta-button {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--text);
+    font-weight: 700;
+    padding: 0.8rem 1.8rem;
+    font-size: 1.1rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+  }
+  
+  .cta-button:hover, .cta-button:focus {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    color: var(--text);
+    text-decoration: none;
+  }
+  
+  /* === Sections === */
+  .about, .features, .cta {
+    padding: 3rem 0;
+    text-align: center;
+  }
+  
+  .about p, .cta p {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .feature {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px var(--shadow);
+    transition: var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--shadow);
+  }
+  
+  .feature h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cta {
+    background: var(--primary-light);
+    margin-top: 3rem;
+    padding: 4rem 2rem;
+    border-radius: var(--border-radius);
+  }
+  
+  /* === Blog Posts === */
+  .post {
+    border-bottom: 2px solid #e1e1e1;
+    padding: 2rem 0;
+    transition: var(--transition);
+  }
+  
+  .post:last-child {
+    border-bottom: none;
+  }
+  
+  .post:hover {
+    transform: translateX(5px);
+  }
+  
+  .post h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .post p {
+    line-height: 1.6;
+    margin-bottom: 0.7rem;
+  }
+  
+  .post em {
+    color: var(--text-light);
+    font-style: italic;
+  }
+  
+  .read-more {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: var(--transition);
+  }
+  
+  .read-more:hover, .read-more:focus {
+    background: var(--primary-dark);
+    text-decoration: none;
+    color: var(--white);
+  }
+  
+  /* === Blog Article === */
+  article h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin: 1rem 0;
+  }
+  
+  article p {
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  
+  article hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid #e1e1e1;
+  }
+  
+  article ol, article ul {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  article li {
+    margin-bottom: 0.8rem;
+  }
+  
+  article a[href="blogposts.html"] {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
+  /* === Team Section === */
+  #team {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .team-member {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    background: var(--white);
+    box-shadow: 0 4px 8px var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--shadow);
+  }
+  
+  .team-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+    margin-bottom: 1rem;
+  }
+  
+  /* === Footer === */
+  footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem;
+    margin-top: auto;
+  }
+  
+  footer p {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* === Accessibility === */
+  a:focus, button:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+  
+  /* === Responsive === */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    h2 {
+      font-size: 1.7rem;
+    }
+    
+    h3 {
+      font-size: 1.3rem;
+    }
+    
+    .hero {
+      padding: 5rem 1rem;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+    }
+    
+    main {
+      padding: 1.5rem;
+    }
+    
+    .feature-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header {
+      padding: 1rem 0;
+    }
+    
+    nav ul {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+    }
+    
+    .hero p {
+      font-size: 1rem;
+    }
+    
+    .cta-button {
+      padding: 0.7rem 1.4rem;
+      font-size: 1rem;
+    }
+    
+    main {
+      width: 95%;
+      padding: 1rem;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .feature, .post, .team-member {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .feature:nth-child(2) { animation-delay: 0.2s; }
+  .feature:nth-child(3) { animation-delay: 0.4s; }
 
-/* Manual Dark Mode Class (for JavaScript toggle) */
-.dark-mode {
-  --primary: #3b91ff;
-  --primary-dark: #0073e6;
-  --primary-light: #1a2d47;
-  --accent: #ffbb33;
-  --text: #e0e0e0;
-  --text-light: #a0a0a0;
-  --background: #121212;
-  --surface: #1e1e1e;
-  --shadow: rgba(0, 0, 0, 0.3);
-  --border: #2a2a2a;
-  --hero-overlay: rgba(0, 0, 0, 0.7);
-  --button-shadow: rgba(0, 0, 0, 0.4);
-  --button-hover-shadow: rgba(0, 0, 0, 0.5);
-  --text-shadow: rgba(0, 0, 0, 0.7);
-}
+  /* LIGHT AND DARK MODE */
+  /* Light Theme (Default) Variables */
+:root {
+    --primary: #0073e6;
+    --primary-dark: #005bb5;
+    --primary-light: #e6f3ff;
+    --accent: #2a6bb3;
+    --text: #333333;
+    --text-light: #666666;
+    --light: #f4f4f4;
+    --white: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+    --background: #ffffff;
+  }
+  
+  /* Dark Theme Variables */
+  [data-theme="dark"] {
+    --primary: #3b8eea;
+    --primary-dark: #2a6bb3;
+    --primary-light: #1a2735;
+    --accent: #2a6bb3;
+    --text: #e1e1e1;
+    --text-light: #b0b0b0;
+    --light: #1a1a1a;
+    --white: #242424;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --background: #121212;
+  }
+  
+  body {
+    background-color: var(--light);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  main {
+    background: var(--background);
+  }
+  
+  /* Theme Toggle Button Styles */
+  .theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  #theme-switch {
+    background: transparent;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+  }
+  
+  #theme-switch:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  #theme-switch svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .sun-icon {
+    display: none;
+  }
+  
+  .moon-icon {
+    display: block;
+  }
+  
+  [data-theme="dark"] .sun-icon {
+    display: block;
+  }
+  
+  [data-theme="dark"] .moon-icon {
+    display: none;
+  }
+  
+  /* Dark mode specific overrides */
+  [data-theme="dark"] header {
+    background: #0d47a1;
+  }
+  
+  [data-theme="dark"] .cta {
+    background: var(--primary-light);
+  }
+  
+  [data-theme="dark"] .feature,
+  [data-theme="dark"] .team-member {
+    background: var(--white);
+  }
+  
+  [data-theme="dark"] h1, 
+  [data-theme="dark"] h2, 
+  [data-theme="dark"] h3, 
+  [data-theme="dark"] h4, 
+  [data-theme="dark"] h5, 
+  [data-theme="dark"] h6 {
+    color: var(--primary);
+  }
+  
+  /* Dark mode hero section */
+  [data-theme="dark"] .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), 
+                      url('https://disabilityinsider.com/wp-content/uploads/2020/02/blind-man-bus-838x525.jpg');
+  }
