@@ -513,7 +513,10 @@
     background: var(--dark-grey-dm);
   }
   
-  [data-theme="dark"] h1, 
+  [data-theme="dark"] h1{
+    color: var(--text-dm);
+  }
+
   [data-theme="dark"] h2, 
   [data-theme="dark"] h3, 
   [data-theme="dark"] h4, 
