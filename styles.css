@@ -551,14 +551,14 @@
   }
   
   [data-theme="dark"] .hero h1 {
-    color: var(--white);
+    color: var(--theme);
     font-size: 3.5rem;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
   
   [data-theme="dark"] .hero p {
-    color: var(--white);
+    color: var(--theme);
     font-size: 1.5rem;
     margin-bottom: 2rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
