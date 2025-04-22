@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA - Evolução do Projeto e Feedback</title>
+    <link rel="icon" type="icon" href="Images/vita logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>VITA - Visually Impaired Transit Assistant</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogposts.html">Blog</a></li>
+                <li><a href="team.html">Team</a></li>
+            </ul>
+        </nav>
+
+        <div class="theme-toggle">
+            <button id="theme-switch" aria-label="Toggle dark mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m-9-9H4m16 0h-1m-7 7a6 6 0 110-12 6 6 0 010 12z"></path>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+
+    </header>
+    <main>
+        <article>
+            <article class="post">
+                <h2>Evolução do Projeto e Feedback de Reuniões</h2>
+                <p><em>21/04/2025 - Post feito por Alexandre Escudeiro</em></p>
+                
+                <h3>Alteração da Ideia Inicial</h3>
+                <p>
+                    Durante as passadas semanas, realizámos algumas reuniões com os nossos
+                    orientadores de projeto e delas surgiu uma ideia diferente da que
+                    tínhamos previsto inicialmente, e que consiste em fazermos uma solução
+                    para o nosso projeto que seja totalmente independente de terceiros, isto
+                    é, que fosse apenas necessário instalar e funcionava autonomamente.
+                </p>
+                
+                <hr>
+                
+                <h3>Descrição da Nova Solução</h3>
+                <p>
+                    A solução proposta consiste na integração de um sistema com uma câmara
+                    HD montada na parte superior da paragem de autocarro, que utilizando a
+                    biblioteca OpenCV (Open Computer Vision), capta as imagens em tempo real
+                    das informações exibidas nos painéis dos autocarros. Estas imagens são,
+                    posteriormente, processadas através de algoritmos de reconhecimento
+                    ótico de caracteres (OCR), recorrendo especificamente ao Tesseract OCR,
+                    permitindo a extração automatizada dos dados textuais.
+                </p>
+                
+                <p>
+                    Os dados extraídos são transmitidos para uma unidade de processamento
+                    central, onde são convertidos para formato áudio utilizando tecnologia
+                    de síntese de voz (TTS -- Text to Speech). A informação é então
+                    difundida para o exterior por meio de um sistema de som instalado
+                    na própria paragem.
+                </p>
+                
+                <p>
+                    Ainda no exterior está presente um botão que, ao ser pressionado, emite
+                    todos os autocarros que vão passar na paragem, obtendo esta informação
+                    através de uma base de dados pré-definida.
+                </p>
+                
+                <p>
+                    Todo este sistema será alimentado através de um painel solar colocado na
+                    parte de cima da nossa paragem.
+                </p>
+                
+                <hr>
+                
+                <h3>Recolha de Novo Feedback</h3>
+                <p>
+                    No seguimento do desenvolvimento desta solução, procurámos recolher
+                    feedback junto de profissionais com experiência relevante na área e
+                    tivemos uma reunião bastante proveitosa com o Professor Tiago Farias,
+                    docente no IST, que tinha contacto com um dos nossos possíveis
+                    stakeholders, a Carris Metropolitana. Nesta reunião, aproveitámos para
+                    questionar qual das nossas duas soluções seria mais fácil de implementar
+                    do ponto de vista de um potencial cliente, e o feedback do professor não
+                    poderia ter sido mais claro, a nova solução era melhor em várias
+                    vertentes, como por exemplo, a simplicidade de instalação e a não
+                    necessidade de apoio de terceiros para o total funcionamento do projeto.
+                </p>
+            </article>
+            <a href="blogposts.html">← Voltar ao Blog</a>
+        </article>
+    </main>
+
+    <script>
+        // Theme switcher JavaScript
+        const themeToggle = document.getElementById('theme-switch');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Function to set theme
+        function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        }
+
+        // Check for saved theme preference or use the system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+        setTheme(savedTheme);
+        } else if (prefersDarkScheme.matches) {
+          setTheme('dark');
+        }
+
+        // Add click event to toggle button
+        themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        });
+    </script>
+    
+</body>
+</html>
