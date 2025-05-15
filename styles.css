@@ -105,24 +105,6 @@
     background: rgba(255, 255, 255, 0.2);
     text-decoration: none;
   }
-
-    /* Logo styling */
-    .logo-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-    
-    .header-logo {
-      width: 60px;
-      height: auto;
-      margin-right: 10px;
-    }
-    
-    nav {
-      margin-top: 1rem;
-    }
   
   /* === Main Content === */
   main {
@@ -155,15 +137,6 @@
   .hero-content {
     max-width: 650px;
     margin: auto;
-  }
-
-  .hero .logo-container {
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-  
-  .hero .header-logo {
-    width: 80px;
   }
   
   .hero h1 {
@@ -405,16 +378,6 @@
     .hero p {
       font-size: 1.2rem;
     }
-
-    .logo-container {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .header-logo {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
     
     main {
       padding: 1.5rem;
@@ -560,14 +523,6 @@
   [data-theme="dark"] h5, 
   [data-theme="dark"] h6 {
     color: var(--primary-dm);
-  }
-
-  [data-theme="dark"] .logo-container {
-    filter: brightness(1.2);
-  }
-  
-  [data-theme="dark"] .header-logo {
-    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
   }
   
   /* Dark mode hero section */
