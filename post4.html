@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA - Desenvolvimento do OCR para Paragens</title>
+    <link rel="icon" type="icon" href="Images/vita logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>VITA - Visually Impaired Transit Assistant</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogposts.html">Blog</a></li>
+                <li><a href="team.html">Team</a></li>
+            </ul>
+        </nav>
+
+        <div class="theme-toggle">
+            <button id="theme-switch" aria-label="Toggle dark mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m-9-9H4m16 0h-1m-7 7a6 6 0 110-12 6 6 0 010 12z"></path>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+
+    </header>
+    <main>
+        <article>
+            <article class="post">
+                <h2>O Desenvolvimento do OCR para Paragens de Autocarros</h2>
+                <p><em>11/06/2025 - Post feito por Alexandre Escudeiro</em></p>
+                
+                <p>
+                    A jornada de desenvolvimento do algoritmo de reconhecimento de caracteres dos letreiros dos autocarros começou em abril, 
+                    com uma pesquisa profunda sobre as ferramentas disponíveis online para nos ajudarem a solucionar o nosso problema. 
+                    Este post documenta a evolução técnica desde os primeiros testes até ao sistema final implementado.
+                </p>
+                
+                <hr>
+                
+                <h3>Protótipo Inicial com OpenCV e TesseractOCR</h3>
+                <p>
+                    Após a nossa pesquisa inicial, decidimos utilizar dois softwares "open-source" chamados OpenCV e Tesseract OCR. 
+                    Começámos com um pequeno teste a uma imagem de um sinal de STOP, utilizando a função "cv2.imread()" para leitura 
+                    estática da imagem. De seguida, aplicámos um pré-processamento simples, com conversão da imagem para cinzento e 
+                    um filtro com threshold adaptativo, de forma a melhorar a definição da imagem. Por fim, aplicámos o comando 
+                    "pytesseract.image_to_string" para extrair o texto bruto da imagem.
+                </p>
+                
+                <p>
+                    Embora os resultados tenham sido bons em imagens muito controladas, rapidamente percebemos que iríamos ter de 
+                    implementar uma solução muito mais complexa. Encontrámos ruído, ângulos inclinados e placas parcialmente visíveis, 
+                    que nos levaram a ter uma taxa de sucesso de apenas cerca de 50% das imagens.
+                </p>
+                
+                <hr>
+                
+                <h3>Integração do EasyOCR e Filtros Morfológicos</h3>
+                <p>
+                    Para aumentar a robustez do programa, integrámos outro algoritmo de OCR chamado EasyOCR para tirar partido do 
+                    reconhecimento de texto em layouts mais complexos. Este algoritmo já vem pré-treinado para encontrar texto em 
+                    ângulos mais difíceis ou imagens com menor resolução.
+                </p>
+                
+                <p>
+                    Aplicámos também filtros morfológicos e de nitidez através do comando "cv2.filter2D" para reduzir o ruído de fundo, 
+                    mas estes filtros exigiam calibragem individual para cada uma das imagens que queríamos ler. Introduzimos ainda 
+                    um filtro de confiança para ler apenas imagens com um nível de confiança superior a 60%, para descartar fragmentos 
+                    sem importância. Assim conseguimos aumentar a nossa taxa de sucesso para cerca de 60% das imagens lidas.
+                </p>
+                
+                <hr>
+                
+                <h3>Transição para YOLOv8 e OCR Híbrido</h3>
+                <p>
+                    Perante a persistente dificuldade em aplicar o OCR à região de interesse (ROI) correta, testámos uma abordagem 
+                    diferente: utilizar um modelo de reconhecimento de imagens treinado com ajuda de machine learning através de 
+                    uma ferramenta da Ultralytics. Treinámos o nosso algoritmo para detetar rapidamente a posição dos letreiros 
+                    dos autocarros de maneira a podermos fazer posteriormente o crop dessa zona e aplicar o OCR apenas a essa área, 
+                    eliminando assim a maior parte do ruído que encontrávamos.
+                </p>
+                
+                <p>
+                    Assim, conseguimos filtrar rapidamente todos os frames que não estavam na nossa ROI e fazer com que só os crops 
+                    importantes passem pelo OCR, passando a processar cerca de 3 frames por segundo no Raspberry Pi e com uma 
+                    precisão de leitura de cerca de 90%.
+                </p>
+                
+                <hr>
+                
+                <h3>Correção com Dados GTFS</h3>
+                <p>
+                    Com acesso aos ficheiros GTFS das operadoras locais - Carris e Carris Metropolitana - disponíveis online, 
+                    tivemos acesso a toda a informação sobre as carreiras, os seus horários e as paragens disponíveis na área 
+                    metropolitana de Lisboa.
+                </p>
+                
+                <p>
+                    Carregámos ambos os ficheiros num DataFrame único com todas as rotas e viagens, expandindo os destinos do 
+                    tipo A – B em A e B, de forma a ficar com linhas do género Número + Direção para cada sentido das carreiras. 
+                    Implementámos ainda um "fuzzy-match", uma ferramenta que faz uma comparação entre dados, aplicado ao texto 
+                    que resulta do processamento do OCR para encontrar uma correspondência nos ficheiros GTFS.
+                </p>
+                
+                <p>
+                    Para obter um menor tempo de busca, adicionámos um passo extra em que é pedido ao técnico que está a instalar 
+                    para fornecer o ID correspondente à paragem onde está, limitando o algoritmo a procurar apenas carreiras que 
+                    estão previstas para essa mesma paragem. Sempre que a similaridade exceda 60%, substituímos o texto bruto do 
+                    OCR pela versão do GTFS, garantindo assim consistência nos resultados obtidos pelo nosso programa.
+                </p>
+                
+                <hr>
+                
+                <h3>Resultados Finais</h3>
+                <p>
+                    Conseguimos assim obter um sistema autónomo que, em tempo real, deteta, lê, corrige e envia para o exterior 
+                    via áudio toda a informação sobre os autocarros, facilitando assim o acesso a estes transportes públicos por 
+                    parte de pessoas invisuais ou com baixa visão.
+                </p>
+                
+                <p>
+                    Este desenvolvimento técnico representa um marco importante no projeto VITA, demonstrando como a combinação de 
+                    diferentes tecnologias - desde OCR tradicional até machine learning e bases de dados de transporte público - 
+                    pode criar uma solução robusta e eficaz para melhorar a acessibilidade dos transportes públicos.
+                </p>
+            </article>
+            <a href="blogposts.html">← Voltar ao Blog</a>
+        </article>
+    </main>
+
+    <script>
+        // Theme switcher JavaScript
+        const themeToggle = document.getElementById('theme-switch');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Function to set theme
+        function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        }
+
+        // Check for saved theme preference or use the system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+        setTheme(savedTheme);
+        } else if (prefersDarkScheme.matches) {
+          setTheme('dark');
+        }
+
+        // Add click event to toggle button
+        themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        });
+    </script>
+    
+</body>
+</html>
