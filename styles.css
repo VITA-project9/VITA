@@ -49,6 +49,7 @@
   h3 {
     font-size: 1.5rem;
     color: var(--primary);
+    text-align: center;
   }
   
   p {
