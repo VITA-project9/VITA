@@ -36,100 +36,81 @@
                 <h2>O Desenvolvimento do OCR para Paragens de Autocarros</h2>
                 <p><em>11/06/2025 - Post feito por Alexandre Escudeiro</em></p>
                 
+                <article>
+                <h1>O desenvolvimento do OCR para paragens de autocarros</h1>
+
+                <h2>Prótotipo inicial com OpenCV e TesseractOCR</h2>
                 <p>
-                    A jornada de desenvolvimento do algoritmo de reconhecimento de caracteres dos letreiros dos autocarros começou em abril, 
-                    com uma pesquisa profunda sobre as ferramentas disponíveis online para nos ajudarem a solucionar o nosso problema. 
-                    Este post documenta a evolução técnica desde os primeiros testes até ao sistema final implementado.
+                    A jornada de desenvolvimento do algoritmo de reconhecimento de caracteres dos letreiros dos autocarros começou em Abril deste mesmo ano, com uma pesquisa profunda sobre as ferramentas disponíveis online para nos ajudarem a solucionar o nosso problema.
                 </p>
-                
-                <hr>
-                
-                <h3>Protótipo Inicial com OpenCV e TesseractOCR</h3>
                 <p>
-                    Após a nossa pesquisa inicial, decidimos utilizar dois softwares "open-source" chamados OpenCV e Tesseract OCR. 
-                    Começámos com um pequeno teste a uma imagem de um sinal de STOP, utilizando a função "cv2.imread()" para leitura 
-                    estática da imagem. De seguida, aplicámos um pré-processamento simples, com conversão da imagem para cinzento e 
-                    um filtro com threshold adaptativo, de forma a melhorar a definição da imagem. Por fim, aplicámos o comando 
-                    "pytesseract.image_to_string" para extrair o texto bruto da imagem.
+                    Após essa pesquisa decidimos utilizar dois softwares “open-source” chamados OpenCV e Tesseract OCR.
                 </p>
-                
                 <p>
-                    Embora os resultados tenham sido bons em imagens muito controladas, rapidamente percebemos que iríamos ter de 
-                    implementar uma solução muito mais complexa. Encontrámos ruído, ângulos inclinados e placas parcialmente visíveis, 
-                    que nos levaram a ter uma taxa de sucesso de apenas cerca de 50% das imagens.
+                    Assim, arrancámos com um pequeno teste a uma imagem de um sinal de STOP e com acesso ao comando <code>cv2.imread()</code>. Utilizamos a função de leitura estática desta mesma imagem, de seguida aplicamos um pré-processamento simples, com conversão da imagem para cinzento e um filtro com threshold adaptativo, de forma a melhorar a definição da imagem. Por fim, aplicámos o comando <code>pytesseract.image_to_string</code> para extrair o texto bruto da imagem.
                 </p>
-                
-                <hr>
-                
-                <h3>Integração do EasyOCR e Filtros Morfológicos</h3>
                 <p>
-                    Para aumentar a robustez do programa, integrámos outro algoritmo de OCR chamado EasyOCR para tirar partido do 
-                    reconhecimento de texto em layouts mais complexos. Este algoritmo já vem pré-treinado para encontrar texto em 
-                    ângulos mais difíceis ou imagens com menor resolução.
+                    Embora os resultados tenham sido bons em imagens muito controladas, rapidamente percebemos que iríamos ter de implementar uma solução muito mais complexa do que a que tínhamos. Encontrámos ruído, ângulos inclinados e placas parcialmente visíveis, que nos levaram a ter uma taxa de sucesso de cerca de 50% das imagens.
                 </p>
-                
+
+                    <h2>EasyOCR e Filtros</h2>
                 <p>
-                    Aplicámos também filtros morfológicos e de nitidez através do comando "cv2.filter2D" para reduzir o ruído de fundo, 
-                    mas estes filtros exigiam calibragem individual para cada uma das imagens que queríamos ler. Introduzimos ainda 
-                    um filtro de confiança para ler apenas imagens com um nível de confiança superior a 60%, para descartar fragmentos 
-                    sem importância. Assim conseguimos aumentar a nossa taxa de sucesso para cerca de 60% das imagens lidas.
+                    Para aumentar a robustez do programa integrámos outro algoritmo de OCR chamado EasyOCR para tirar partido de reconhecimento de texto em layouts mais complexos, sendo que este algoritmo já vem pré-treinado para encontrar texto em ângulos mais difíceis ou imagens com menor resolução.
                 </p>
-                
-                <hr>
-                
-                <h3>Transição para YOLOv8 e OCR Híbrido</h3>
                 <p>
-                    Perante a persistente dificuldade em aplicar o OCR à região de interesse (ROI) correta, testámos uma abordagem 
-                    diferente: utilizar um modelo de reconhecimento de imagens treinado com ajuda de machine learning através de 
-                    uma ferramenta da Ultralytics. Treinámos o nosso algoritmo para detetar rapidamente a posição dos letreiros 
-                    dos autocarros de maneira a podermos fazer posteriormente o crop dessa zona e aplicar o OCR apenas a essa área, 
-                    eliminando assim a maior parte do ruído que encontrávamos.
+                    Aplicámos também filtros morfológicos e de nitidez através do comando <code>cv2.filter2D</code> para reduzir o ruído de fundo, mas estes filtros exigiam calibragem individual para cada uma das imagens que queríamos ler.
                 </p>
-                
                 <p>
-                    Assim, conseguimos filtrar rapidamente todos os frames que não estavam na nossa ROI e fazer com que só os crops 
-                    importantes passem pelo OCR, passando a processar cerca de 3 frames por segundo no Raspberry Pi e com uma 
-                    precisão de leitura de cerca de 90%.
+                    E, por fim, introduzimos um filtro de confiança para ler apenas imagens com um nível de confiança superior a 60%, para descartar fragmentos sem importância. Assim conseguimos aumentar a nossa taxa de sucesso para cerca de 60% das imagens lidas.
                 </p>
-                
-                <hr>
-                
-                <h3>Correção com Dados GTFS</h3>
+
+                <figure>
+                    <img src="Images\img1post2alex.jpg" alt="Teste com EasyOCR" />
+                    <figcaption>FIGURA 1 - TESTE COM EASY_OCR</figcaption>
+                </figure>
+
+                <h2>Transição para YOLOv8 e OCR Híbrido</h2>
                 <p>
-                    Com acesso aos ficheiros GTFS das operadoras locais - Carris e Carris Metropolitana - disponíveis online, 
-                    tivemos acesso a toda a informação sobre as carreiras, os seus horários e as paragens disponíveis na área 
-                    metropolitana de Lisboa.
+                    Perante a persistente dificuldade em aplicar o OCR à região de interesse (ROI) correta testámos uma abordagem diferente da anterior: a de utilizar um modelo de reconhecimento de imagens treinado com ajuda de “machine learning” através de uma ferramenta da Ultralytics. Treinámos o nosso algoritmo para detetar rapidamente a posição dos letreiros dos autocarros de maneira a podermos fazer posteriormente o crop dessa zona dos letreiros e aplicar o OCR apenas a essa zona e assim eliminar a maior parte do ruído que encontrávamos.
                 </p>
-                
                 <p>
-                    Carregámos ambos os ficheiros num DataFrame único com todas as rotas e viagens, expandindo os destinos do 
-                    tipo A – B em A e B, de forma a ficar com linhas do género Número + Direção para cada sentido das carreiras. 
-                    Implementámos ainda um "fuzzy-match", uma ferramenta que faz uma comparação entre dados, aplicado ao texto 
-                    que resulta do processamento do OCR para encontrar uma correspondência nos ficheiros GTFS.
+                    Assim, conseguimos filtrar rapidamente todos os frames que não estavam na nossa “ROI” e fazer com que só os crops importantes passem pelo OCR, passando assim a processar cerca de 3 frames por segundo no RaspberryPi e com uma precisão de leitura de cerca de 90%.
                 </p>
-                
+
+                <figure>
+                    <img src="Images\img2post2alex.jpg" alt="Resultados do modelo de treino dos autocarros" />
+                    <figcaption>FIGURA 2 - RESULTADOS MODELO DE TREINO DOS AUTOCARROS</figcaption>
+                </figure>
+
+                <h2>Correção com GTFS</h2>
                 <p>
-                    Para obter um menor tempo de busca, adicionámos um passo extra em que é pedido ao técnico que está a instalar 
-                    para fornecer o ID correspondente à paragem onde está, limitando o algoritmo a procurar apenas carreiras que 
-                    estão previstas para essa mesma paragem. Sempre que a similaridade exceda 60%, substituímos o texto bruto do 
-                    OCR pela versão do GTFS, garantindo assim consistência nos resultados obtidos pelo nosso programa.
+                    Com acesso aos ficheiros GTFS das operadoras locais, neste caso Carris e Carris Metropolitana, disponíveis online, tivemos acesso a toda a informação sobre as carreiras, os seus horários e as paragens disponíveis na área metropolitana de Lisboa.
                 </p>
-                
-                <hr>
-                
-                <h3>Resultados Finais</h3>
                 <p>
-                    Conseguimos assim obter um sistema autónomo que, em tempo real, deteta, lê, corrige e envia para o exterior 
-                    via áudio toda a informação sobre os autocarros, facilitando assim o acesso a estes transportes públicos por 
-                    parte de pessoas invisuais ou com baixa visão.
+                    Carregámos ambos os ficheiros num DataFrame único com todas as rotas e viagens, de seguida expandimos os destinos do tipo A – B em A e B, de forma a ficar com linhas do género Número + Direção para cada sentido das carreiras.
                 </p>
-                
                 <p>
-                    Este desenvolvimento técnico representa um marco importante no projeto VITA, demonstrando como a combinação de 
-                    diferentes tecnologias - desde OCR tradicional até machine learning e bases de dados de transporte público - 
-                    pode criar uma solução robusta e eficaz para melhorar a acessibilidade dos transportes públicos.
+                    Implementámos ainda um “fuzzy-match”, uma ferramenta que faz uma comparação entre dados, que aplicámos ao texto que resulta do processamento do OCR e tentámos encontrar uma correspondência nos ficheiros GTFS. Para obter um menor tempo de busca adicionámos um passo extra em que é pedido ao técnico que está a instalar para fornecer o ID correspondente à paragem onde está, limitando o algoritmo a procurar apenas carreiras que estão previstas para essa mesma paragem.
                 </p>
-            </article>
+                <p>
+                    Sempre que a similaridade exceda 0.6 (ou seja 60%), substituímos o texto bruto do OCR pela versão do GTFS, garantindo assim consistência nos resultados obtidos pelo nosso programa.
+                </p>
+
+                <figure>
+                    <img src="Images\img3post2alex.jpg" alt="Filtro GTFS para carreiras específicas" />
+                    <figcaption>FIGURA 3 - FILTRO GTFS PARA CARREIRAS ESPECÍFICAS</figcaption>
+                </figure>
+
+                <h2>Resultados finais</h2>
+                <p>
+                    Conseguimos assim obter um sistema autónomo que, em tempo real, deteta, lê, corrige e envia para o exterior via áudio, toda a informação sobre os autocarros, facilitando assim o acesso a estes transportes públicos por parte de pessoas invisuais ou com baixa visão.
+                </p>
+
+                <figure>
+                    <img src="Images\img4post2alex.jpg" alt="Exemplo de output final" />
+                    <figcaption>FIGURA 4 - EXEMPLO DE OUTPUT</figcaption>
+                </figure>
+                </article>
             <a href="blogposts.html">← Voltar ao Blog</a>
         </article>
     </main>
