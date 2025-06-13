@@ -35,11 +35,8 @@
             <article class="post">
                 <h2>O Desenvolvimento do OCR para Paragens de Autocarros</h2>
                 <p><em>11/06/2025 - Post feito por Alexandre Escudeiro</em></p>
-                
-                <article>
-                <h1>O desenvolvimento do OCR para paragens de autocarros</h1>
 
-                <h2>Prótotipo inicial com OpenCV e TesseractOCR</h2>
+                <h3>Prótotipo inicial com OpenCV e TesseractOCR</h3>
                 <p>
                     A jornada de desenvolvimento do algoritmo de reconhecimento de caracteres dos letreiros dos autocarros começou em Abril deste mesmo ano, com uma pesquisa profunda sobre as ferramentas disponíveis online para nos ajudarem a solucionar o nosso problema.
                 </p>
@@ -65,11 +62,11 @@
                 </p>
 
                 <figure>
-                    <img src="Images\img1post2alex.jpg" alt="Teste com EasyOCR" />
-                    <figcaption>FIGURA 1 - TESTE COM EASY_OCR</figcaption>
+                    <img src="Images\img1post2alex.jpg" alt="Teste com EasyOCR" style="display: block; margin: auto;"/>
+                    <figcaption>TESTE COM EASY_OCR</figcaption>
                 </figure>
 
-                <h2>Transição para YOLOv8 e OCR Híbrido</h2>
+                <h3>Transição para YOLOv8 e OCR Híbrido</h3>
                 <p>
                     Perante a persistente dificuldade em aplicar o OCR à região de interesse (ROI) correta testámos uma abordagem diferente da anterior: a de utilizar um modelo de reconhecimento de imagens treinado com ajuda de “machine learning” através de uma ferramenta da Ultralytics. Treinámos o nosso algoritmo para detetar rapidamente a posição dos letreiros dos autocarros de maneira a podermos fazer posteriormente o crop dessa zona dos letreiros e aplicar o OCR apenas a essa zona e assim eliminar a maior parte do ruído que encontrávamos.
                 </p>
@@ -78,11 +75,11 @@
                 </p>
 
                 <figure>
-                    <img src="Images\img2post2alex.jpg" alt="Resultados do modelo de treino dos autocarros" />
-                    <figcaption>FIGURA 2 - RESULTADOS MODELO DE TREINO DOS AUTOCARROS</figcaption>
+                    <img src="Images\img2post2alex.png" alt="Resultados do modelo de treino dos autocarros" style="display: block; margin: auto;" />
+                    <figcaption>RESULTADOS MODELO DE TREINO DOS AUTOCARROS</figcaption>
                 </figure>
 
-                <h2>Correção com GTFS</h2>
+                <h3>Correção com GTFS</h3>
                 <p>
                     Com acesso aos ficheiros GTFS das operadoras locais, neste caso Carris e Carris Metropolitana, disponíveis online, tivemos acesso a toda a informação sobre as carreiras, os seus horários e as paragens disponíveis na área metropolitana de Lisboa.
                 </p>
@@ -97,18 +94,18 @@
                 </p>
 
                 <figure>
-                    <img src="Images\img3post2alex.jpg" alt="Filtro GTFS para carreiras específicas" />
-                    <figcaption>FIGURA 3 - FILTRO GTFS PARA CARREIRAS ESPECÍFICAS</figcaption>
+                    <img src="Images\img3post2alex.png" alt="Filtro GTFS para carreiras específicas" style="display: block; margin: auto;" />
+                    <figcaption>FILTRO GTFS PARA CARREIRAS ESPECÍFICAS</figcaption>
                 </figure>
 
-                <h2>Resultados finais</h2>
+                <h3>Resultados finais</h3>
                 <p>
                     Conseguimos assim obter um sistema autónomo que, em tempo real, deteta, lê, corrige e envia para o exterior via áudio, toda a informação sobre os autocarros, facilitando assim o acesso a estes transportes públicos por parte de pessoas invisuais ou com baixa visão.
                 </p>
 
                 <figure>
-                    <img src="Images\img4post2alex.jpg" alt="Exemplo de output final" />
-                    <figcaption>FIGURA 4 - EXEMPLO DE OUTPUT</figcaption>
+                    <img src="Images\img4post2alex.jpg" alt="Exemplo de output final" style="display: block; margin: auto;"/>
+                    <figcaption>EXEMPLO DE OUTPUT</figcaption>
                 </figure>
                 </article>
             <a href="blogposts.html">← Voltar ao Blog</a>
