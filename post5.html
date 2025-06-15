@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA - Hardware e a nossa lógica por trás da escolha</title>
+    <link rel="icon" type="icon" href="Images/vita logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>VITA - Visually Impaired Transit Assistant</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogposts.html">Blog</a></li>
+                <li><a href="team.html">Team</a></li>
+            </ul>
+        </nav>
+
+        <div class="theme-toggle">
+            <button id="theme-switch" aria-label="Toggle dark mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m-9-9H4m16 0h-1m-7 7a6 6 0 110-12 6 6 0 010 12z"></path>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+
+    </header>
+    <main>
+        <article>
+            <article class="post">
+                <h1 style="text-align: center;">Hardware e a nossa lógica por trás da escolha</h1>
+                    <p style="text-align: center;"><em>Post feito por Ricardo Gaspar</em></p>
+                    <p style="text-align: justify;">
+                        Desde o início do projeto, sabíamos que a solução do VITA teria de ser autónoma, 
+                        fiável e acessível. Mas transformar uma ideia em algo funcional implicou uma série 
+                        de decisões técnicas no que toca ao hardware. Neste post, partilhamos o raciocínio 
+                        por trás de cada uma das escolhas principais que fizemos.
+                    </p>
+
+                <h2 style="text-align: center;">Cérebro do sistema: Raspberry Pi 5</h2>
+                    <p style="text-align: justify;">
+                        Optámos pelo Raspberry Pi 5 como unidade central de processamento. Mas porquê?
+                    </p>
+                    <ul style="text-align: justify;">
+                        <li>
+                            Possui poder de computação suficiente para correr modelos de visão computacional, 
+                            como o YOLOv8, e TTS em tempo real.
+                        </li>
+                        <li>
+                            Possui portas GPIO, USB e interfaces de rede, o que nos permite interligar step-down, 
+                            botão de pressão, câmara e coluna de forma simples.
+                        </li>
+                        <li>
+                            É acessível, compacto, e já bem documentado na comunidade maker, o que nos possibilitou
+                            avançar depressa para a fase de testes, graças à comunidade vasta e software open source.
+                        </li>
+                    </ul>
+                <h2 style="text-align: center;">Componente Passiva: Câmara módulo Pi</h2>
+                    <p style="text-align: justify;">
+                        A câmara é essencial para ler os números dos autocarros. Escolhemos uma câmara HD com 
+                        suporte para infravermelhos, porque:
+                    </p>
+                    <ul style="text-align: justify;">
+                        <li>A imagem tem qualidade suficiente para alimentar os algoritmos de deteção (OCR).</li>
+                        <li>O suporte para baixa luminosidade é importante para que o sistema funcione de dia e de noite.</li>
+                        <li>É compatível com o Raspberry Pi via USB e tem um custo reduzido.</li>
+                    </ul>
+
+                <h2 style="text-align: center;">Componente Ativa: Botão físico com feedback sonoro</h2>
+                    <p style="text-align: justify;">
+                        Queríamos que a pessoa cega pudesse ativar o sistema de forma simples e intuitiva. Um botão físico foi a solução mais direta:
+                    </p>
+                    <ul style="text-align: justify;">
+                        <li>Pode ser facilmente localizado e pressionado.</li>
+                        <li>Está ligado ao Raspberry Pi por GPIO, com resposta rápida.</li>
+                        <li>Quando pressionado, o sistema lê os autocarros esperados na base de dados e transmite a informação por áudio.</li>
+                    </ul>
+
+                <h2 style="text-align: center;">Acessibilidade: Coluna ativa</h2>
+                    <p style="text-align: justify;">
+                    Como o principal meio de comunicação é o som, escolhemos uma coluna de computador, por apresentar menor distorção sonora:
+                    </p>
+                    <ul style="text-align: justify;">
+                        <li>Volume esperado é suficiente para ambientes exteriores.</li>
+                        <li>Boa qualidade sonora, mesmo com a voz sintética.</li>
+                        <li>Simples ligação ao Raspberry via cabo USB.</li>
+                    </ul>
+
+                <h2 style="text-align: center;">Autonomia: Painel solar + bateria</h2>
+                    <p style="text-align: justify;">
+                        De forma a não depender da rede elétrica:
+                    </p>
+                    <ul style="text-align: justify;">
+                        <li>O sistema é alimentado por um painel solar com controlador de carga.</li>
+                        <li>A energia é armazenada numa bateria recarregável, que garante funcionamento mesmo em dias nublados ou à noite.</li>
+                    </ul>
+                    <p style="text-align: justify;">
+                        Isto torna o sistema sustentável e fácil de instalar em qualquer paragem.
+                    </p>
+                    <p style="text-align: justify;"><strong>Nota:</strong> Autonomia 24/7 não atingida ainda com os componentes escolhidos para fins de teste.</p>
+                <h2 style="text-align: center;">Proteção: Caixas e suportes</h2>
+
+                    <p style="text-align: justify;">
+                        Todos os componentes são instalados nas suas respetivas caixas de acesso limitado, para fins de manutenção e substituição de módulos. Os protótipos são constituídos por filamento PLA, impressos numa impressora 3D.
+                    </p>
+
+                <figure>
+                    <img src="Images\imgpost2ricardo.png" alt="Caixa protetora impressa em 3D" style="display: block; margin: auto; max-width: 100%;" />
+                </figure>
+
+                <h2 style="text-align: center;">Resumo final</h2>
+
+                    <p style="text-align: justify;">
+                        O hardware do VITA foi pensado para ser:
+                    </p>
+                    <ul style="text-align: justify;">
+                        <li>Acessível para pessoas com deficiência visual;</li>
+                        <li>Autónomo em termos de energia e operação;</li>
+                        <li>Escalável e modular, para facilitar manutenção e evolução;</li>
+                        <li>Compatível com software aberto e fácil de desenvolver;</li>
+                    </ul>
+
+                    <p style="text-align: justify;">
+                        Cada peça foi escolhida com um único objetivo: tornar as paragens de autocarro verdadeiramente acessíveis — porque todos os passageiros importam.
+                    </p>
+                </article>
+            <a href="blogposts.html">← Voltar ao Blog</a>
+        </article>
+    </main>
+
+    <script>
+        // Theme switcher JavaScript
+        const themeToggle = document.getElementById('theme-switch');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Function to set theme
+        function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        }
+
+        // Check for saved theme preference or use the system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+        setTheme(savedTheme);
+        } else if (prefersDarkScheme.matches) {
+          setTheme('dark');
+        }
+
+        // Add click event to toggle button
+        themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        });
+    </script>
+    
+</body>
+</html>
