@@ -177,12 +177,12 @@
   }
   
   /* === Sections === */
-  .about, .features, .cta {
+  .about, .features, .cta, .how-it-works, .project-structure {
     padding: 3rem 0;
     text-align: center;
   }
   
-  .about p, .cta p {
+  .about p, .cta p, .how-it-works p, .project-structure p {
     max-width: 700px;
     margin: 0 auto 2rem;
     font-size: 1.1rem;
@@ -214,6 +214,79 @@
   .feature h3 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
+  }
+  
+  /* === How It Works Section === */
+  .how-it-works-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 2rem;
+    text-align: left;
+  }
+  
+  .how-it-works-text {
+    order: 1;
+  }
+  
+  .how-it-works-image {
+    order: 2;
+    text-align: center;
+  }
+  
+  .how-it-works-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .how-it-works-image img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--shadow);
+  }
+  
+  /* === Project Structure Section === */
+  .project-structure-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 2rem;
+    text-align: left;
+  }
+  
+  .project-structure-text {
+    order: 2;
+  }
+  
+  .project-structure-image {
+    order: 1;
+    text-align: center;
+  }
+  
+  .project-structure-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .project-structure-image img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--shadow);
+  }
+  
+  /* === Image Captions === */
+  .image-caption {
+    font-style: italic;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
   }
   
   .cta {
@@ -387,6 +460,24 @@
     .feature-list {
       grid-template-columns: 1fr;
     }
+    
+    /* How It Works & Project Structure responsive */
+    .how-it-works-content,
+    .project-structure-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+    
+    .how-it-works-text,
+    .how-it-works-image {
+      order: initial;
+    }
+    
+    .project-structure-text,
+    .project-structure-image {
+      order: initial;
+    }
   }
   
   @media (max-width: 480px) {
@@ -507,6 +598,10 @@
   
   [data-theme="dark"] .cta {
     background: var(--dark-grey-dm);
+  }
+  
+  [data-theme="dark"] .image-caption {
+    color: var(--text-light-dm);
   }
   
   [data-theme="dark"] .feature,
