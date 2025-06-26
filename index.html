@@ -101,7 +101,7 @@
                 </div>
                 <div class="project-structure-text">
                     <p>[Placeholder: Descrição da arquitetura do sistema, incluindo componentes de hardware e software.]</p>
-                    <p>ZOOM TA ADICIONADO</p>
+                    <p>ZOOM TA ADICIONADO 2</p>
                     <p>[Placeholder: Informação sobre as parcerias estabelecidas e metodologia de desenvolvimento.]</p>
                 </div>
             </div>
@@ -142,24 +142,28 @@
     </script>
 
     <script>
-        document.querySelectorAll('.zoomable').forEach(img => {
-            img.style.cursor = 'zoom-in';
-            img.addEventListener('click', () => {
-            const overlay = document.createElement('div');
-            overlay.classList.add('zoom-overlay');
+    document.querySelectorAll('.zoomable').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+        const overlay = document.createElement('div');
+        overlay.classList.add('zoom-overlay');
 
-            const zoomedImg = document.createElement('img');
-            zoomedImg.src = img.src;
-            zoomedImg.alt = img.alt;
+        const zoomedImg = document.createElement('img');
+        zoomedImg.src = img.src;
+        zoomedImg.alt = img.alt;
 
-            overlay.appendChild(zoomedImg);
-            document.body.appendChild(overlay);
+        overlay.appendChild(zoomedImg);
+        document.body.appendChild(overlay);
 
-            overlay.addEventListener('click', () => {
-            document.body.removeChild(overlay);
-            });
+        // Prevent background scroll
+        document.body.style.overflow = 'hidden';
+
+        overlay.addEventListener('click', () => {
+            overlay.remove();
+            document.body.style.overflow = '';
+        });
         });
     });
-    </script>
+</script>
 </body>
 </html>
