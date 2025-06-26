@@ -87,7 +87,7 @@
                     <p>[Placeholder: Informação sobre como o utilizador interage com o dispositivo e configura as suas preferências.]</p>
                 </div>
                 <div class="how-it-works-image">
-                    <img src="Images\vitasolution.png" alt="Diagrama explicativo do funcionamento do VITA"/>
+                    <img src="Images\vitasolution.png" alt="Diagrama explicativo do funcionamento do VITA" class="zoomable"/>
                 </div>
             </div>
         </section>
@@ -96,12 +96,12 @@
             <h2>Estrutura do Projeto</h2>
             <div class="project-structure-content">
                 <div class="project-structure-image">
-                    <img src="Images\estruturaprojeto.png" alt="Esquema da estrutura do projeto VITA" />
+                    <img src="Images\estruturaprojeto.png" alt="Esquema da estrutura do projeto VITA" class="zoomable"/>
                     <p class="image-caption">[Placeholder: Legenda do esquema estrutural]</p>
                 </div>
                 <div class="project-structure-text">
                     <p>[Placeholder: Descrição da arquitetura do sistema, incluindo componentes de hardware e software.]</p>
-                    <p>[Placeholder: Explicação das diferentes fases de desenvolvimento e implementação do projeto.]</p>
+                    <p>ZOOM TA ADICIONADO</p>
                     <p>[Placeholder: Informação sobre as parcerias estabelecidas e metodologia de desenvolvimento.]</p>
                 </div>
             </div>
@@ -140,6 +140,26 @@
         setTheme(newTheme);
         });
     </script>
-    
+
+    <script>
+        document.querySelectorAll('.zoomable').forEach(img => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', () => {
+            const overlay = document.createElement('div');
+            overlay.classList.add('zoom-overlay');
+
+            const zoomedImg = document.createElement('img');
+            zoomedImg.src = img.src;
+            zoomedImg.alt = img.alt;
+
+            overlay.appendChild(zoomedImg);
+            document.body.appendChild(overlay);
+
+            overlay.addEventListener('click', () => {
+            document.body.removeChild(overlay);
+            });
+        });
+    });
+    </script>
 </body>
 </html>
