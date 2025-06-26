@@ -215,6 +215,18 @@
     font-size: 1.3rem;
     margin-bottom: 1rem;
   }
+
+  .project-resources {
+      text-align: center;
+      margin: 2rem 0;
+  }
+
+  .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+  }
   
   /* === How It Works Section === */
   .how-it-works-content {
