@@ -106,20 +106,57 @@
                     </figure>
                     </div>
 
-                    <h2 style="text-align: center;">Desafio adicional: A base do protótipo</h2>
+                    <style>
+                    .text-image-section {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-start;
+                        gap: 2em;
+                        margin-bottom: 2em;
+                    }
 
-                    <p style="text-align: justify;">
+                    .text-image-section .text,
+                    .text-image-section .image {
+                        flex: 1;
+                    }
+
+                    .text-image-section .image img {
+                        max-width: 100%;
+                        height: auto;
+                        border-radius: 8px;
+                    }
+
+                    .text-image-section figcaption {
+                        text-align: center;
+                        font-size: 0.9em;
+                        margin-top: 0.5em;
+                    }
+
+                    @media (max-width: 768px) {
+                        .text-image-section {
+                        flex-direction: column;
+                        }
+                    }
+                    </style>
+
+                    <section class="text-image-section">
+                    <!-- Texto à esquerda -->
+                    <div class="text">
+                        <h2 style="text-align: left;">Desafio adicional: A base do protótipo</h2>
+                        <p style="text-align: justify;">
                         Um dos principais desafios consistiu em encontrar uma base adequada para alojar a bateria do sistema e os controladores de carga e que fosse simultaneamente robusta e resistente às condições exteriores. Esta base teria ainda de ser de fácil acesso, permitindo intervenções rápidas sem necessidade de desmontagem, e apresentar um custo reduzido.
-                    </p>
-
-                    <p style="text-align: justify;">
+                        </p>
+                        <p style="text-align: justify;">
                         Optou-se por uma caixa pré-fabricada com tampa removível, que permite o acesso direto aos componentes internos. Esta solução equilibra robustez, custo e funcionalidade, funcionando como compartimento inferior da estrutura e oferecendo suporte estável à bateria e às ligações elétricas.
-                    </p>
+                        </p>
+                    </div>
 
-                    <figure>
-                        <img src="base_bateria.jpg" alt="Base para bateria com tampa removível" style="display: block; margin: auto; max-width: 100%;" />
-                        <figcaption style="text-align: center;">FIGURA 3 - Compartimento para bateria e controlo de carga</figcaption>
-                    </figure>
+                    <!-- Imagem à direita -->
+                    <div class="image">
+                        <img src="baseprototipo.png" alt="Base para bateria com tampa removível" />
+                        <figcaption>FIGURA 4 - Compartimento para bateria e controlo de carga</figcaption>
+                    </div>
+                    </section>
 
                     <h2 style="text-align: center;">Modelação 3D e Design Modular no Protótipo VITA</h2>
 
